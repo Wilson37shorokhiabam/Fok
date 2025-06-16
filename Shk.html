@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surprise Box</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: #ffcc00;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #aaa;
+            transition: transform 0.2s;
+        }
+
+        #box:active {
+            transform: scale(0.95);
+        }
+
+        #name {
+            margin-top: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            display: none;
+            color: #222;
+        }
+
+        .emoji {
+            position: absolute;
+            top: -40px;
+            font-size: 32px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-40px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box" onclick="showName()">🎁 Surprise Box</div>
+    <div id="name">LENIN SHAKTHU</div>
+
+    <script>
+        function showName() {
+            document.getElementById("box").style.display = "none";
+            document.getElementById("name").style.display = "block";
+
+            // Create falling emojis
+            for (let i = 0; i < 50; i++) {
+                let emoji = document.createElement("div");
+                emoji.className = "emoji";
+                emoji.innerHTML = "😂";
+                emoji.style.left = Math.random() * 100 + "vw";
+                emoji.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                emoji.style.animationDelay = Math.random() + "s";
+                document.body.appendChild(emoji);
+
+                // Remove after animation
+                setTimeout(() => {
+                    emoji.remove();
+                }, 6000);
+            }
+        }
+    </script>
+
+</body>
+</html>
